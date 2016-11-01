@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import TodoItem from './TodoItem';
 import CountDisplay from './CountDisplay';
 
+require('./todo.css');
+
 class TodoList extends Component {
 	render() {
 		var list = this.props.list.map((todo, index) => <TodoItem title={todo} done={this.props.done[index]} fin={this.props.fin_func} del={this.props.del_func} index={index}/>)
