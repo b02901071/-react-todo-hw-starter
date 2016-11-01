@@ -1,33 +1,10 @@
-const { Component } = React;
-
-class TodoItem extends Component {
-	constructor(props) {
-		super(props);
-		this.handleDone = this.handleDone.bind(this);
-		this.handleDel = this.handleDel.bind(this);
-	}
-
-	handleDone() {
-		this.props.fin(this.props.index);
-	}
-
-	handleDel() {
-		this.props.del(this.props.index);
-	}
-
-	render() {
-		return (<li className={(this.props.done)?"completed":""}>
-				<div className="view">
-					<input className="toggle" type="checkbox" onClick={this.handleDone} />
-					<label>{this.props.title}</label>
-					<button className="destroy" onClick={this.handleDel} />
-				</div></li>);
-	}
-}
-
+//const { Component } = React;
+import React,{Component} from 'react';
+import ReactDOM from 'react-dom';
+import TodoItem from './TodoItem';
+import CountDisplay from './CountDisplay';
 
 class TodoList extends Component {
-	
 	render() {
 		var list = this.props.list.map((todo, index) => <TodoItem title={todo} done={this.props.done[index]} fin={this.props.fin_func} del={this.props.del_func} index={index}/>)
 		return (
@@ -37,21 +14,6 @@ class TodoList extends Component {
 	}
 }
 
-
-class CountDisplay extends Component {
-	render() {
-		let count = 0;
-		for( let i = 0; i < this.props.done.length; i++) {
-			if (this.props.done[i] === false) {
-				count += 1;
-			}
-		}
-		let str = "";
-		if (count === 1) { str = "1 item left"; }
-		else { str = count + " items left"; }
-		return <span className="todo-count">{str}</span>;
-	}
-}
 
 
 class TodoApp extends Component {
@@ -152,6 +114,6 @@ class TodoApp extends Component {
 
 
 ReactDOM.render(
-		<TodoApp />,
-		document.getElementById('root')
+   <TodoApp />,
+   document.getElementById('root')
 );
